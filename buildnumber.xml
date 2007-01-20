@@ -17,7 +17,7 @@
   <!-- Ant-Contrib is a collection of tasks which are used to calculate        -->
   <!-- the "build number".                                                     -->
   <!-- see http://ant-contrib.sourceforge.net/tasks/                           -->
-  <taskdef resource="net/sf/antcontrib/antlib.xml" classpath="lib/ant-contrib.jar"/>
+  <taskdef resource="net/sf/antcontrib/antlib.xml" classpath="tools/ant-contrib.jar"/>
 	  
   <!-- ======================================================================= -->
   <!-- Generate the build number ("years on market" + "day number")            -->
