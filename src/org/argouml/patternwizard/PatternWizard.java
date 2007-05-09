@@ -79,10 +79,10 @@ import org.argouml.model.*;
 import org.argouml.patternwizard.operations.*;
 import org.argouml.patternwizard.util.*;
 import org.argouml.swingext.SpacerPanel;
-import org.argouml.ui.ArgoDiagram;
 import org.argouml.ui.ArgoDialog;
 import org.argouml.ui.ProjectBrowser;
 import org.argouml.ui.targetmanager.TargetManager;
+import org.argouml.uml.diagram.ArgoDiagram;
 
 /******************************************************************************\
  *                               CLASS DEFINITION                             *
