@@ -59,8 +59,8 @@ import org.argouml.patternwizard.operations.ArgoElementWrapper;
 import org.argouml.patternwizard.operations.ModelElementAbstract;
 import org.argouml.patternwizard.util.IconAndTextCellRenderer;
 import org.argouml.patternwizard.util.JListDnDArgoElement;
-import org.argouml.ui.ArgoDialog;
 import org.argouml.uml.diagram.ui.StereotypeUtility;
+import org.argouml.util.ArgoDialog;
 
 /******************************************************************************\
  *                               CLASS DEFINITION                             *
