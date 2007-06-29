@@ -55,7 +55,6 @@ import org.argouml.uml.diagram.ArgoDiagram;
 import org.argouml.uml.diagram.DiagramFactory;
 import org.argouml.uml.diagram.static_structure.layout.ClassdiagramLayouter;
 import org.argouml.uml.diagram.static_structure.ui.UMLClassDiagram;
-import org.argouml.uml.diagram.ui.UMLDiagram;
 import org.argouml.uml.reveng.DiagramInterface;
 import org.tigris.gef.base.Globals;
 
@@ -1504,7 +1503,7 @@ public class CombinePattern
             // get the diagram to modify
             theDiagram = getInputClassDiagram();                // what happens if no classes where selected in this diagram?
             // get the package this diagram belongs to
-            thePackage = ((UMLDiagram)theDiagram).getOwner();   // what happens if it is not a package?
+            thePackage = ((ArgoDiagram)theDiagram).getOwner();   // what happens if it is not a package?
         }
         // if we are creating a new pattern
         else {                
