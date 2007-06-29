@@ -1574,7 +1574,7 @@ public class CombinePattern
         
         // the DiagramInterface will be used to add classes (with their relations) to the diagram
         DiagramInterface diagram = new DiagramInterface(Globals.curEditor());
-        diagram.setCurrentDiagram((UMLClassDiagram)theDiagram);
+        diagram.setCurrentDiagram(theDiagram);
         
         // get an iterator for the classes of the new pattern
         componentsIterator = resultComponents.iterator(); 
@@ -1592,7 +1592,7 @@ public class CombinePattern
 
         // start auto-layout only if we are not transforming existing classen, so we don't destroy the users layout
         if (!transform) {
-            ClassdiagramLayouter layouter = new ClassdiagramLayouter((UMLDiagram)theDiagram);
+            ClassdiagramLayouter layouter = new ClassdiagramLayouter(theDiagram);
             layouter.layout();
         }
     }
