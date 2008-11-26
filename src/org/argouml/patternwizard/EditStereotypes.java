@@ -255,14 +255,14 @@ public class EditStereotypes extends ArgoDialog implements ActionListener
         while(toRemoveIterator.hasNext()) {
             // get the next element to remove and its path
             Object elementToRemove = toRemoveIterator.next();
-            Object pathToRemove = modelManagementHelper.getPath(elementToRemove);
+            Object pathToRemove = modelManagementHelper.getPathList(elementToRemove);
             // create an iterator for the source elements
             Iterator sourceIterator = source.iterator();
             // run through all of them
             while(sourceIterator.hasNext()) {
                 // get the next source element and its path
                 Object sourceElement = sourceIterator.next();
-                Object path = modelManagementHelper.getPath(sourceElement);
+                Object path = modelManagementHelper.getPathList(sourceElement);
                 // if the path is the same than the on from the element to remove
                 if(path.equals(pathToRemove)) {
                     // remove it from the source

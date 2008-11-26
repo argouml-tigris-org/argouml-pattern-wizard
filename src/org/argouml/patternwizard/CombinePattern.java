@@ -49,7 +49,23 @@ import org.argouml.model.DataTypesFactory;
 import org.argouml.model.Facade;
 import org.argouml.model.Model;
 import org.argouml.model.ModelManagementFactory;
-import org.argouml.patternwizard.operations.*;
+import org.argouml.patternwizard.operations.AttributeAbstract;
+import org.argouml.patternwizard.operations.AttributeOperatorMerge;
+import org.argouml.patternwizard.operations.AttributeOperatorModify;
+import org.argouml.patternwizard.operations.AttributeWrapper;
+import org.argouml.patternwizard.operations.ClassAbstract;
+import org.argouml.patternwizard.operations.ClassOperatorMerge;
+import org.argouml.patternwizard.operations.ClassOperatorModify;
+import org.argouml.patternwizard.operations.ClassWrapper;
+import org.argouml.patternwizard.operations.MethodAbstract;
+import org.argouml.patternwizard.operations.MethodOperatorMerge;
+import org.argouml.patternwizard.operations.MethodOperatorModify;
+import org.argouml.patternwizard.operations.MethodWrapper;
+import org.argouml.patternwizard.operations.ModelElementAbstract;
+import org.argouml.patternwizard.operations.RelationAbstract;
+import org.argouml.patternwizard.operations.RelationOperatorMerge;
+import org.argouml.patternwizard.operations.RelationOperatorModify;
+import org.argouml.patternwizard.operations.RelationWrapper;
 import org.argouml.ui.targetmanager.TargetManager;
 import org.argouml.uml.diagram.ArgoDiagram;
 import org.argouml.uml.diagram.DiagramFactory;
@@ -604,7 +620,7 @@ public class CombinePattern
         // set the changebility (addOnly, changeable or frozen)
         coreHelper.setChangeability(newAttribute, facade.getChangeability(srcAttribute));
         // set the modifier (static or not static)
-        coreHelper.setOwnerScope(newAttribute, facade.getOwnerScope(srcAttribute));
+        coreHelper.setStatic(newAttribute, facade.isStatic(srcAttribute));
         // set the initial value
         coreHelper.setInitialValue(newAttribute, facade.getInitialValue(srcAttribute));
         
@@ -639,8 +655,6 @@ public class CombinePattern
         
         // get the current project
         Project project = ProjectManager.getManager().getCurrentProject();
-        // get the model
-        Object model = project.getModel();
         
         // get the return parameters of the operation
         Collection srcMethodeReturnParams = coreHelper.getReturnParameters(srcMethod);
@@ -655,7 +669,7 @@ public class CombinePattern
         }
 
         // create a operation
-        newMethod = coreFactory.buildOperation(newClass, model, srcMethodeReturnType, ((MethodAbstract)aMethod).getName());
+        newMethod = coreFactory.buildOperation2(newClass, srcMethodeReturnType, ((MethodAbstract)aMethod).getName());
 
         /*** set the properties ***/
         // set the visibility (public, private, protected or package)
@@ -665,7 +679,7 @@ public class CombinePattern
         coreHelper.setLeaf(newMethod, facade.isLeaf(srcMethod));  
         coreHelper.setRoot(newMethod, facade.isRoot(srcMethod));  
         coreHelper.setQuery(newMethod, facade.isQuery(srcMethod));  
-        coreHelper.setOwnerScope(newMethod, facade.getOwnerScope(srcMethod));                 
+        coreHelper.setStatic(newMethod, facade.isStatic(srcMethod));                 
         // set the concurrency (guarded, sequential or concurrent)
         coreHelper.setConcurrency(newMethod, facade.getConcurrency(srcMethod));
         
@@ -796,7 +810,8 @@ public class CombinePattern
             // set the properties of the ralation
             coreHelper.setName(newRelation, aRelation.getName());
             addAllStereotypes(newRelation, aRelation.getStereotypes());
-            coreHelper.setTaggedValues(newRelation, facade.getTaggedValuesCollection(srcRelation));
+            // TODO: How to implement next line??
+//            coreHelper.setTaggedValues(newRelation, facade.getTaggedValuesCollection(srcRelation));
             
             // add the newly created relation to the collection, so that we cann add them later to the diagram
             relations.add(newRelation);
@@ -820,10 +835,11 @@ public class CombinePattern
         while (stereotypesIterator.hasNext()) {   
             // get the stereotype to add
             Object stereotype = stereotypesIterator.next();
-            // create a "copy" of the stereotype
-            Object stereotypeCopy = Model.getModelManagementHelper().getCorrespondingElement(stereotype, model, true);
+//            // create a "copy" of the stereotype
+//            Object stereotypeCopy = Model.getModelManagementHelper().getCorrespondingElement(stereotype, model, true);
             // add the stereotype to the model element
-            Model.getCoreHelper().addStereotype(modelElement, stereotypeCopy);
+//            Model.getCoreHelper().addStereotype(modelElement, stereotypeCopy);
+            Model.getCoreHelper().addStereotype(modelElement, stereotype);
         }        
     }
     

@@ -49,6 +49,7 @@ import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -75,11 +76,25 @@ import org.apache.log4j.Logger;
 import org.argouml.application.helpers.ResourceLoaderWrapper;
 import org.argouml.i18n.Translator;
 import org.argouml.kernel.ProjectManager;
-import org.argouml.model.*;
-import org.argouml.patternwizard.operations.*;
-import org.argouml.patternwizard.util.*;
+import org.argouml.model.Facade;
+import org.argouml.model.Model;
+import org.argouml.patternwizard.operations.ArgoElementWrapper;
+import org.argouml.patternwizard.operations.AttributeAbstract;
+import org.argouml.patternwizard.operations.AttributeWrapper;
+import org.argouml.patternwizard.operations.ClassAbstract;
+import org.argouml.patternwizard.operations.ClassWrapper;
+import org.argouml.patternwizard.operations.MethodAbstract;
+import org.argouml.patternwizard.operations.MethodWrapper;
+import org.argouml.patternwizard.operations.RelationAbstract;
+import org.argouml.patternwizard.operations.RelationWrapper;
+import org.argouml.patternwizard.util.CombinedIcon;
+import org.argouml.patternwizard.util.IconAndTextCellRenderer;
+import org.argouml.patternwizard.util.JListDnD;
+import org.argouml.patternwizard.util.JListDnDArgoElement;
+import org.argouml.patternwizard.util.JListDnDWithMerge;
+import org.argouml.patternwizard.util.TabCloseIcon;
 import org.argouml.swingext.SpacerPanel;
-import org.argouml.ui.ProjectBrowser;
+import org.argouml.ui.ProjectActions;
 import org.argouml.ui.targetmanager.TargetManager;
 import org.argouml.uml.diagram.ArgoDiagram;
 import org.argouml.util.ArgoDialog;
@@ -1635,7 +1650,7 @@ implements ActionListener, ListSelectionListener, ListDataListener, FocusListene
      * @param targets The model elements of which the diagram should be displayed.
      */
     private void showPattern(Collection targets) {
-        ProjectBrowser.getInstance().jumpToDiagramShowing(targets);
+        ProjectActions.jumpToDiagramShowing((List) targets);
     }
     
     /**
